@@ -1,18 +1,11 @@
-package com.example.feature.recipes.data
+package com.example.feature.recipes.data.remote
 
 import com.example.core.network.remote.ApiRequest
 import com.example.core.network.remote.RemoteDataSource
 import com.example.core.network.remote.fetch
 import com.example.core.utils.result.Result
-import com.example.feature.recipes.domain.Recipe
-import com.example.feature.recipes.domain.RecipeRepository
 import com.squareup.moshi.JsonClass
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
-import javax.inject.Singleton
 
 @JsonClass(generateAdapter = true)
 data class RecipeDto(
@@ -53,33 +46,4 @@ class RecipeRemoteSourceImpl @Inject constructor(
 
     override suspend fun getRecipe(id: Int): Result<RecipeDto> =
         remote.fetch(ApiRequest.get("recipes/$id"))
-}
-
-private fun RecipeDto.toDomain() = Recipe(
-    id = id, name = name, cuisine = cuisine, difficulty = difficulty,
-    prepTimeMinutes = prepTimeMinutes, cookTimeMinutes = cookTimeMinutes,
-    servings = servings, rating = rating, ingredients = ingredients, instructions = instructions,
-)
-
-private fun <T> Result<T>.getOrThrow(): T = when (this) {
-    is Result.Success -> data
-    is Result.Error   -> throw cause ?: IllegalStateException(message)
-}
-
-class RecipeRepositoryImpl @Inject constructor(
-    private val remote: RecipeRemoteSource,
-) : RecipeRepository {
-    override suspend fun getRecipes(limit: Int) = remote.getRecipes(limit).getOrThrow().recipes.map { it.toDomain() }
-    override suspend fun searchRecipes(query: String) = remote.searchRecipes(query).getOrThrow().recipes.map { it.toDomain() }
-    override suspend fun getRecipe(id: Int) = remote.getRecipe(id).getOrThrow().toDomain()
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class RecipeDataModule {
-    @Binds @Singleton
-    abstract fun bindRecipeRepository(impl: RecipeRepositoryImpl): RecipeRepository
-
-    @Binds
-    abstract fun bindRecipeRemoteSource(impl: RecipeRemoteSourceImpl): RecipeRemoteSource
 }
