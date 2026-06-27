@@ -1,5 +1,5 @@
-import com.example.buildlogic.featureDomainProjectPath
-import com.example.buildlogic.libs
+import com.example.app.buildlogic.featureDomainProjectPath
+import com.example.app.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply

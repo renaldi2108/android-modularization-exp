@@ -1,5 +1,5 @@
 import com.android.build.api.dsl.CommonExtension
-import com.example.buildlogic.configureAndroidCompose
+import com.example.app.buildlogic.configureAndroidCompose
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

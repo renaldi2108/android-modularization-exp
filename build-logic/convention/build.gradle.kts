@@ -5,7 +5,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.example.buildlogic"
+group = "com.example.app.buildlogic"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -30,6 +30,10 @@ gradlePlugin {
         register("androidApplication") {
             id = "androidbase.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
+        }
+        register("appDependencies") {
+            id = "androidbase.app.dependencies"
+            implementationClass = "AppDependenciesConventionPlugin"
         }
         register("androidLibrary") {
             id = "androidbase.android.library"

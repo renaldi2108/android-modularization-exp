@@ -1,5 +1,5 @@
 import com.android.build.api.dsl.LibraryExtension
-import com.example.buildlogic.configureKotlinAndroid
+import com.example.app.buildlogic.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
