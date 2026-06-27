@@ -14,12 +14,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.core.shared.designsystem.component.AppButton
-import com.example.core.shared.designsystem.theme.AppTheme
-import com.example.core.utils.navigation.AppDestinations
-import com.example.core.utils.navigation.FeatureNavGraph
-import com.example.core.utils.navigation.registerAll
-import com.example.feature.auth.presentation.navigation.AuthRoutes
+import com.example.app.core.shared.designsystem.component.AppButton
+import com.example.app.core.shared.designsystem.theme.AppTheme
+import com.example.app.core.utils.navigation.AppDestinations
+import com.example.app.core.utils.navigation.FeatureNavGraph
+import com.example.app.core.utils.navigation.registerAll
+import com.example.app.feature.auth.presentation.navigation.AuthRoutes
 
 @Composable
 fun AppNavigation(

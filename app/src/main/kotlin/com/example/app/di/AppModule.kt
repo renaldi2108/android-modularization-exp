@@ -1,8 +1,8 @@
 package com.example.app.di
 
 import com.example.app.BuildConfig
-import com.example.core.network.NetworkConfig
-import com.example.feature.auth.domain.AuthRepository
+import com.example.app.core.network.NetworkConfig
+import com.example.app.feature.auth.domain.AuthRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

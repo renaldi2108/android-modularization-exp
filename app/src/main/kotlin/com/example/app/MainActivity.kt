@@ -5,8 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.app.navigation.AppNavigation
-import com.example.core.shared.designsystem.theme.AppTheme
-import com.example.core.utils.navigation.FeatureNavGraph
+import com.example.app.core.shared.designsystem.theme.AppTheme
+import com.example.app.core.utils.navigation.FeatureNavGraph
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

@@ -1,7 +1,7 @@
 package com.example.app.di
 
-import com.example.core.utils.coroutine.ActivityRetainedCoroutineScope
-import com.example.core.utils.coroutine.SingletonCoroutineScope
+import com.example.app.core.common.coroutine.ActivityRetainedCoroutineScope
+import com.example.app.core.common.coroutine.SingletonCoroutineScope
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

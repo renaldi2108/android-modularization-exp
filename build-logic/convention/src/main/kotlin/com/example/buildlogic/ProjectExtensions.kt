@@ -9,7 +9,10 @@ val Project.libs: VersionCatalog
     get() = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
 internal fun Project.androidNamespace(): String =
-    "com.example" + path.removePrefix(":").split(":").joinToString("") { ".$it" }
+    "com.example.app" + path.removePrefix(":")
+        .split(":")
+        .filterNot { it == "app" }
+        .joinToString("") { ".$it" }
 
 internal fun Project.featureDomainProjectPath(): String =
     path.substringBeforeLast(":") + ":domain"

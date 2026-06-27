@@ -1,0 +1,19 @@
+package com.example.app.feature.carts.presentation.di
+
+import com.example.app.core.utils.navigation.FeatureNavGraph
+import com.example.app.feature.carts.presentation.navigation.cartsNavGraph
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import dagger.multibindings.IntoSet
+
+@Module
+@InstallIn(SingletonComponent::class)
+object CartsNavModule {
+    @Provides
+    @IntoSet
+    fun provideCartsNavGraph(): FeatureNavGraph = FeatureNavGraph { builder, navController ->
+        builder.cartsNavGraph(navController)
+    }
+}
