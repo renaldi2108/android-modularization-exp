@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -21,6 +22,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidBase"
 include(":app")
+include(":core:common")
 include(":core:utils")
 include(":core:network")
 include(":core:datastore")

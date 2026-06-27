@@ -1,19 +1,12 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.ksp)
+    id("androidbase.android.application")
+    id("androidbase.android.compose")
+    id("androidbase.android.hilt")
 }
 
 android {
-    namespace = "com.example.app"
-    compileSdk = 35
-
     defaultConfig {
         applicationId = "com.example.app"
-        minSdk = 26
-        targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
 
@@ -35,21 +28,7 @@ android {
     }
 
     buildFeatures {
-        compose = true
         buildConfig = true
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions { jvmTarget = "17" }
-}
-
-composeCompiler {
-    if (providers.gradleProperty("composeCompilerReports").orNull == "true") {
-        reportsDestination.set(layout.buildDirectory.dir("compose_compiler"))
-        metricsDestination.set(layout.buildDirectory.dir("compose_compiler"))
     }
 }
 
@@ -79,8 +58,6 @@ dependencies {
 
     implementation(project(":core:shared:designsystem"))
 
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
