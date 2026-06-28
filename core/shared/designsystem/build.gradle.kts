@@ -13,6 +13,7 @@ dependencies {
     api(libs.androidx.material.icons.ext)
 
     implementation(libs.androidx.core.ktx)
+    api(libs.coil.compose)
 
     debugImplementation(libs.androidx.ui.tooling)
 }

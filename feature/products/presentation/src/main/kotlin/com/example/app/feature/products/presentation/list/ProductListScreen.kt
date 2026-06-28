@@ -3,9 +3,11 @@ package com.example.app.feature.products.presentation.list
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
@@ -14,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -21,8 +24,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import com.example.app.core.shared.designsystem.component.AppAsyncImage
 import com.example.app.core.shared.designsystem.component.AppButton
 import com.example.app.core.shared.designsystem.component.AppTextField
 import com.example.app.core.shared.designsystem.theme.AppTheme
@@ -71,7 +78,7 @@ fun ProductListScreen(
                     }
 
                 else -> LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize().testTag("products_list"),
                     contentPadding = androidx.compose.foundation.layout.PaddingValues(AppTheme.dimens.space),
                     verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.spaceSm),
                 ) {
@@ -87,26 +94,36 @@ fun ProductListScreen(
 @Composable
 private fun ProductRow(product: Product, onClick: () -> Unit) {
     Card(onClick = onClick, modifier = Modifier.fillMaxWidth()) {
-        Column(
+        Row(
             modifier = Modifier.fillMaxWidth().padding(AppTheme.dimens.space),
-            verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.spaceXs),
+            horizontalArrangement = Arrangement.spacedBy(AppTheme.dimens.space),
         ) {
-            Text(
-                text = product.title,
-                style = AppTheme.typography.titleMedium,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+            AppAsyncImage(
+                url = product.thumbnail,
+                contentDescription = product.title,
+                modifier = Modifier.size(72.dp).clip(MaterialTheme.shapes.medium),
             )
-            Text(
-                text = product.category,
-                style = AppTheme.typography.bodySmall,
-                color = AppTheme.colors.onSurfaceVariant,
-            )
-            Text(
-                text = "$ ${product.price}   ·   ★ ${product.rating}",
-                style = AppTheme.typography.labelLarge,
-                color = AppTheme.colors.primary,
-            )
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(AppTheme.dimens.spaceXs),
+            ) {
+                Text(
+                    text = product.title,
+                    style = AppTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                Text(
+                    text = product.category,
+                    style = AppTheme.typography.bodySmall,
+                    color = AppTheme.colors.onSurfaceVariant,
+                )
+                Text(
+                    text = "$ ${product.price}   ·   ★ ${product.rating}",
+                    style = AppTheme.typography.labelLarge,
+                    color = AppTheme.colors.primary,
+                )
+            }
         }
     }
 }

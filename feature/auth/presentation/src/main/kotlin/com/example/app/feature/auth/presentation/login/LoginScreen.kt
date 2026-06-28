@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -86,6 +87,7 @@ fun LoginContent(
             keyboardActions = KeyboardActions(
                 onNext = { focusManager.moveFocus(FocusDirection.Down) }
             ),
+            modifier        = Modifier.testTag("login_username"),
         )
 
         Spacer(Modifier.height(AppTheme.dimens.spaceMd))
@@ -101,6 +103,7 @@ fun LoginContent(
                 focusManager.clearFocus()
                 onAction(LoginUiAction.LoginClicked)
             },
+            modifier           = Modifier.testTag("login_password"),
         )
 
         Spacer(Modifier.height(AppTheme.dimens.spaceLg))
